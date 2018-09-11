@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="hospital.dao.LoginDao"> 
+ <select id="logincheck" parameterType="map" resultType="hospital.enity.User">    
+       select * 
+       from User
+       where 
+       name =#{name}
+       and password=#{password}   
+ </select> 
+ 
+ <insert id="registerUser" parameterType="map">
+ 		insert into 
+ 		User
+ 		(name,password,roleId,definition,tname,sex,phone,age,email)
+ 		value
+ 		(#{name},#{password},#{roleId},#{definition}," "," "," ",0," ")
+ </insert>
+ 
+ <insert id="insertNews" parameterType="map">
+ 
+ 	insert into
+ 	news
+ 	(newsId,title,body,time,publisher)
+ 	value
+ 	(#{newsId},#{title},#{body},#{time},#{publisher})
+ 
+ </insert>
+ 
+ <select id="allInfo" resultType="hospital.enity.News">
+ 
+ 	select *
+ 	from news
+ 
+ </select>
+ 
+ <select id="watchNews" resultType="hospital.enity.News">
+ 
+ 	select * from
+ 	news
+ 	where
+ 	newsId=#{newsId}
+ 
+ </select>
+    
+</mapper>  

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hospital.dao.DoctorDao">
+
+	<select id="queryDoctorInfo" parameterType="string"
+		resultType="hospital.enity.Doctor">
+
+		select *
+		from doctor
+		where
+		dname=#{name}
+		and
+		password=#{password}
+
+	</select>
+
+	<update id="saveDoctorInfo" parameterType="map">
+
+		update doctor set department=#{department},
+		position=#{position},
+		phone=#{phone},
+		age=#{age},
+		email=#{email}
+		where
+		dname=#{name}
+		and password=#{password}
+
+	</update>
+
+	<select id="allYy" parameterType="string" resultType="hospital.enity.Yuyue">
+
+		select *
+		from yuyue
+		where
+		dname=#{name}
+		and isok=#{isok}
+
+	</select>
+
+	<update id="yuyueSuccess" parameterType="string">
+
+		update yuyue set isok=#{isok}
+		where yyh=#{yybh}
+
+	</update>
+
+	<update id="yuyueFail" parameterType="string">
+
+		update yuyue set isok=#{isok}
+		where yyh=#{yybh}
+
+	</update>
+
+	<select id="searchYyBydt" parameterType="string" resultType="hospital.enity.Yuyue">
+
+		select *
+		from yuyue
+		where
+		dname=#{name}
+		and ydate=#{date}
+
+	</select>
+
+	<select id="allJz" parameterType="string" resultType="hospital.enity.Yuyue">
+
+		select *
+		from yuyue
+		where
+		dname=#{name}
+		and isok=#{isok}
+
+	</select>
+
+	<select id="allJiuJz" parameterType="string" resultType="hospital.enity.Yuyue">
+
+		select *
+		from yuyue
+		where
+		dname=#{name}
+		and isok=#{isok}
+		or 
+		dname=#{name}
+		and isok=#{isok2}
+
+	</select>
+	
+	<select id="queryByDepartment" parameterType="string" resultType="hospital.enity.Doctor">
+
+		select *
+		from doctor
+		where
+		department=#{department}
+
+	</select>
+	
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="hospital.dao.CustomerDao"> 
+
+	<update id="saveUserInfo" parameterType="map">
+	
+		update User set tname=#{tname},
+		sex=#{sex},
+		phone=#{phone},
+		age=#{age},
+		email=#{email}
+		where 
+		name=#{name}
+		and password=#{password}
+	
+	</update>
+
+	<select id="queryUserInfo" parameterType="string" resultType="hospital.enity.User">
+	
+		select * 
+		from User
+		where
+		name=#{name}
+		and password=#{password}
+	
+	</select>
+	
+	<select id="showdirector" resultType="hospital.enity.Doctor">
+	
+		select department,
+		dname,
+		summary,sex,position
+		from doctor
+		where 
+		pId=1
+	
+	</select>
+	
+	<select id="searchDoctor" parameterType="string" resultType="hospital.enity.Doctor">
+	
+		select department,
+		dname,
+		summary,sex,position
+		from doctor
+		where 
+		department=#{department}
+	
+	</select>
+	
+	<select id="searchAllDoctor" resultType="hospital.enity.Doctor">
+	
+		select * from doctor
+	
+	</select>
+	
+	<select id="yuyueSearchDoctor"  parameterType="string" resultType="hospital.enity.Doctor">
+	
+		select * from
+		doctor
+		where
+		dname=#{dname}
+	
+	</select>
+	
+	<select id="queryDoc" parameterType="int" resultType="hospital.enity.Doctor">
+	
+		select *
+		from doctor
+		where
+		jnumber=#{jnumber}
+	
+	</select>
+	
+	<insert id="insertYuyue" parameterType="map">
+	
+		insert into
+		yuyue
+			(
+			jnumber,
+			dname,
+			cname,
+			ydate,
+			ytime,
+			sex,
+			phone,
+			isok,
+			age,yyh
+			)
+		value(
+			#{jnumber},
+			#{dname},
+			#{cname},
+			#{ydate},
+			#{ytime},
+			#{sex},
+			#{phone},
+			#{isok},
+			#{age},
+			#{yyh}
+		)
+	
+	</insert>
+	
+	<select id="searchAllYuyue" parameterType="string" resultType="hospital.enity.Yuyue">
+	
+		select *
+		from yuyue
+		where
+		cname=#{cname}
+	
+	</select>
+	
+	<select id="searchYuyueOne" parameterType="map" resultType="hospital.enity.Yuyue">
+		
+		select *
+		from yuyue
+		where
+		cname=#{cname}
+		and isok=#{isok}
+	
+	</select>
+	
+	<select id="searchByDate" parameterType="map" resultType="hospital.enity.Yuyue">
+		
+		select *
+		from yuyue
+		where
+		cname=#{cname}
+		and ydate=#{date}
+	
+	</select>
+	
+</mapper>
